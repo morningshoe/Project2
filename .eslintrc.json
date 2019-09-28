@@ -22,7 +22,7 @@
         "camelcase": "error",
         "indent": [
             "error",
-            2
+            "tab"
         ],
         "quotes": [
             "error",

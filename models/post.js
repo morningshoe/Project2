@@ -21,13 +21,13 @@ module.exports = function(sequelize, DataTypes) {
       foreignKey: {
         allowNull: false
       }
-    })
+    });
 
     Post.belongsTo(models.Category, {
       foreignKey: {
         allowNull: false
       }
-    })
+    });
   };
 
 
