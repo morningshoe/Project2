@@ -20,8 +20,6 @@
         "no-multi-spaces": "error",
         "no-unused-vars": "error",
         "camelcase": "error",
-        "indent": [
-        ],
         "quotes": [
             "error",
             "double"
