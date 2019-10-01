@@ -1,47 +1,116 @@
-require("dotenv").config();
 var express = require("express");
 var exphbs = require("express-handlebars");
-
-var db = require("./models");
-
 var app = express();
-var PORT = process.env.PORT || 3000;
+var path = require("path");
+var request = require('request');
+var bodyParser = require('body-parser');
 
-// Middleware
-app.use(express.urlencoded({ extended: false }));
-app.use(express.json());
-app.use(express.static("public"));
+var PORT = process.env.PORT || 3030;
 
-// Handlebars
-app.engine(
-  "handlebars",
-  exphbs({
-    defaultLayout: "main"
-  })
-);
+//Body-parser middleware
+app.use(bodyParser.urlencoded({extended: false}));
+
+
+app.engine("handlebars", exphbs());
 app.set("view engine", "handlebars");
 
-// Routes
-require("./routes/apiRoutes")(app);
-require("./routes/htmlRoutes")(app);
+//API Keys
+function callTech (finishedTech) {
+    request("https://newsapi.org/v2/top-headlines?country=us&category=technology&apiKey=bae0f0bd96534d62b77172d660788633", { json:true }, (err, res, body) => {
+        if (err) {return console.log(err);}
+        if(res.statusCode === 200){
+            finishedTech(body.articles);
+        };
+    });    
+};
 
-var syncOptions = { force: false };
+//Calling business API
+function callBus (finishedBus) {
+    request("https://newsapi.org/v2/top-headlines?country=us&category=business&apiKey=bae0f0bd96534d62b77172d660788633", { json:true }, (err, res, body) => {
+        if (err) {return console.log(err);}
+        if(res.statusCode === 200){
+            finishedBus(body.articles);
+        };
+    });    
+};
 
-// If running a test, set syncOptions.force to true
-// clearing the `testdb`
-if (process.env.NODE_ENV === "test") {
-  syncOptions.force = true;
-}
+//Calling Sports API
+function callSports (finishedSports) {
+    request("https://newsapi.org/v2/top-headlines?country=us&category=sports&apiKey=bae0f0bd96534d62b77172d660788633", { json:true }, (err, res, body) => {
+        if (err) {return console.log(err);}
+        if(res.statusCode === 200){
+            finishedSports(body.articles);
+        };
+    });    
+};
 
-// Starting the server, syncing our models ------------------------------------/
-db.sequelize.sync(syncOptions).then(function() {
-  app.listen(PORT, function() {
-    console.log(
-      "==> 🌎  Listening on port %s. Visit http://localhost:%s/ in your browser.",
-      PORT,
-      PORT
-    );
-  });
+//Calling Entertainment API
+function callEnt (finishedEnt) {
+    request("https://newsapi.org/v2/top-headlines?country=us&category=entertainment&apiKey=bae0f0bd96534d62b77172d660788633", { json:true }, (err, res, body) => {
+        if (err) {return console.log(err);}
+        if(res.statusCode === 200){
+            finishedEnt(body.articles);
+        };
+    });    
+};
+
+
+//Calling Health API
+function callHealth (finishedHealth) {
+    request("https://newsapi.org/v2/top-headlines?country=us&category=health&apiKey=bae0f0bd96534d62b77172d660788633", { json:true }, (err, res, body) => {
+        if (err) {return console.log(err);}
+        if(res.statusCode === 200){
+            finishedHealth(body.articles);
+        };
+    });    
+};
+
+
+//Set Handlebar routes 
+app.get("/home.html", function (req, res) {
+    res.render("home");
 });
 
-module.exports = app;
+app.get("/technology.html", function (req, res) {
+    callTech (function(doneTech) {
+                res.render("technology", {
+                tech: doneTech
+            });
+            }); 
+});
+
+app.get("/business.html", function (req, res) {
+    callBus (function(doneBus) {
+        res.render("business", {
+        bus: doneBus
+    });
+    }); 
+});
+
+app.get("/sports.html", function (req, res) {
+    callSports (function(doneSports) {
+        res.render("sports", {
+        sports: doneSports
+    });
+    }); 
+});
+
+app.get("/entertainment.html", function (req, res) {
+    callEnt (function(doneEnt) {
+        res.render("entertainment", {
+        ent: doneEnt
+    });
+    }); 
+});
+
+app.get("/health.html", function (req, res){
+    callHealth (function(doneHealth) {
+        res.render("health", {
+        health: doneHealth
+    });
+    }); 
+});
+
+app.use(express.static(path.join(__dirname, 'public')));
+
+app.listen(PORT, () => console.log("Server listening on port " + PORT));
