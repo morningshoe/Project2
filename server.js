@@ -112,5 +112,5 @@ app.get("/health.html", function (req, res){
 });
 
 app.use(express.static(path.join(__dirname, 'public')));
-
+require("./routes/htmlRoutes")(app)
 app.listen(PORT, () => console.log("Server listening on port " + PORT));
