@@ -1,3 +1,41 @@
+$submitBtn = (".blogbut");
+$formTitle = ("#colFormLabelSm");
+$formBody = ("#blogPostBody");
+$formImage = (".image_url");
+var API = {
+    savePost: function (post) {
+        return $.ajax({
+            headers: {
+                "Content-Type": "application/json"
+            },
+            type: "POST",
+            url: "api/posts",
+            data: JSON.stringify(post)
+        });
+    }
+};
+var handleFormSubmit = function (event) {
+    event.preventDefault();
+
+    var post = {
+        title: $formTitle.val().trim(),
+        body: $formBody.val().trim(),
+        image: $formImage.val().trim()
+    }
+
+    if (!(post.title && post.description && post.image)) {
+        alert("You must enter an example text and description!");
+        return;
+    }
+
+    API.savePost(post).then(function () {
+        window.location.href("home");
+    });
+
+}
+
+$submitBtn.on("click", handleFormSubmit)
+
 // // Get references to page elements
 // var $exampleText = $("#example-text");
 // var $exampleDescription = $("#example-description");
