@@ -80,3 +80,18 @@ body.loading .loading-modal {
 .img {
     width: 100%;
 }
+
+/*formatting for home page images */
+
+
+.flex {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.card-width {
+    width: 33%;
+}
+.home-img {
+    width: 100%;
+}
