@@ -65,10 +65,23 @@ function callHealth (finishedHealth) {
     });    
 };
 
+//Calling API for home page
+function callHome (finishedHome) {
+  request("https://newsapi.org/v2/top-headlines?country=us&apiKey=bae0f0bd96534d62b77172d660788633", { json:true }, (err, res, body) => {
+      if (err) {return console.log(err);}
+      if(res.statusCode === 200){
+          finishedHome(body.articles);
+      };
+  });    
+};
 
 //Set Handlebar routes 
 app.get("/home.html", function (req, res) {
-    res.render("home");
+  callHome (function(doneHome) {
+    res.render("home", {
+    home: doneHome
+  });
+  });
 });
 
 app.get("/technology.html", function (req, res) {
@@ -110,6 +123,12 @@ app.get("/health.html", function (req, res){
     });
     }); 
 });
+
+app.get("/blog.html", function (req, res){
+  res.render("blog", {
+  })
+});
+
 
 app.use(express.static(path.join(__dirname, 'public')));
 require("./routes/htmlRoutes")(app)

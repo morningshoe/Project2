@@ -1,12 +1,14 @@
+{{#each ent}}
  <div class="jumbotron jumbotron-fluid">
   <div class="container">
-    <h1 class="display-4">Fluid jumbotron</h1>
-    <p class="lead">{{#each ent}}
-        <strong>Title: </strong>{{title}}
-        <br/><br/>
+    <h1 class="display-4">{{title}}</h1>
+    <p class="lead">
         <strong>Description: </strong>{{description}}
         <br/><br/>
         <img src = {{{urlToImage}}} class="img-fluid" src = {{{urlToImage}}} alt="Responsive image">
-  {{/each}}</p>
+        <br/><br/>
+       <a href={{url}} class="card-link">Full Article</a>
+  </p>
   </div>
 </div>
+{{/each}}
