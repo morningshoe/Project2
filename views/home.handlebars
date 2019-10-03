@@ -38,16 +38,16 @@
 </div>
 {{/each}} --}}
 
-{{#each home}}
+{{!-- {{#each home}}
 <div class="card" style="width: 18rem;">
-  <img src= {{{urlToImage}}} class="card-img-top" alt="...">
+  <img src= {{urlToImage}}} class="card-img-top" alt="...">
   <div class="card-body">
     <h5 class="card-title">{{title}}</h5>
     <p class="card-text">{{description}}</p>
-    <a href="/blog.html" class="btn btn-primary">Post a Blog!</a>
+    <a href="/blog.html" class="btn btn-primary">Tell us your thoughts!</a>
 </div>
 </div>
-{{/each}}
+{{/each}} --}}
 
 {{!-- {{#each home}}
 <div class="card mb-3" style="max-width: 540px;">
@@ -65,3 +65,31 @@
   </div>
 </div>
 {{/each}} --}}
+
+{{#each home}}
+<div class="card-deck">
+  <div class="card">
+    <img src={{@index}}: {{{urlToImage}}} class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">{{@index}}: {{title}}</h5>
+      <p class="card-text">{{@index}}: {{description}}</p>
+      <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+    </div>
+  </div>
+  <div class="card">
+    <img src={{@index}}: {{{urlToImage}}} class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">{{@index}}: {{title}}</h5>
+      <p class="card-text">{{@index}}: {{description}}</p>
+      <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+    </div>
+  </div>
+  <div class="card">
+    <img src={{@index}}: {{{urlToImage}}} class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">{{@index}}: {{title}}</h5>
+      <p class="card-text">{{@index}}: {{description}}</p>
+      <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+    </div>
+  </div>
+  {{/each}}
