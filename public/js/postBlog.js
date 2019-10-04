@@ -23,7 +23,7 @@ var handleFormSubmit = function (event) {
   var post = {
     title: formTitle.val().trim(),
     body: formBody.val().trim(),
-    image: imageUrl.val().trim()
+    image: imageUrl
   }
   console.log(post);
   if (!(post.title && post.body)) {
