@@ -23,7 +23,7 @@ var handleFormSubmit = function (event) {
         body: formBody.val().trim(),
         // image: formImage.val().trim()
     }
-
+    console.log(post);
     if (!(post.title && post.body)) {
         alert("You must enter a title and body!");
         return;
@@ -85,3 +85,5 @@ $("document").ready(function() {
     }
   });
 });
+
+
