@@ -39,7 +39,7 @@ module.exports = function(app) {
   });
 
   // POST route for saving a new post
-  app.post("/blog", function(req, res) {
+  app.post("/api/posts", function(req, res) {
     db.Post.create(req.body)
     .then(function(dbPost) {
       res.json(dbPost);
