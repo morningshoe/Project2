@@ -2,62 +2,64 @@ var blogSubmit = $(".blogbut");
 var formTitle = $("#colFormLabelSm");
 var formBody = $("#blogPostBody");
 var formImage = $(".image_url");
+var imageUrl = null;
+
 
 var API = {
-    savePost: function (post) {
-        return $.ajax({
-            headers: {
-                "Content-Type": "application/json"
-            },
-            type: "POST",
-            url: "api/posts",
-            data: JSON.stringify(post)
-        });
-    }
+  savePost: function (post) {
+    return $.ajax({
+      headers: {
+        "Content-Type": "application/json"
+      },
+      type: "POST",
+      url: "api/posts",
+      data: JSON.stringify(post)
+    });
+  }
 };
 var handleFormSubmit = function (event) {
-    event.preventDefault();
-
-    var post = {
-        title: formTitle.val().trim(),
-        body: formBody.val().trim(),
-        // image: formImage.val().trim()
-    }
-    console.log(post);
-    if (!(post.title && post.body)) {
-        alert("You must enter a title and body!");
-        return;
-    }
-
-    API.savePost(post).then(function () {
-        window.location.href("/");
-    });
-
+  event.preventDefault();
+  
+  var post = {
+    title: formTitle.val().trim(),
+    body: formBody.val().trim(),
+    image: imageUrl.val().trim()
+  }
+  console.log(post);
+  if (!(post.title && post.body)) {
+    alert("You must enter a title and body!");
+    return;
+  }
+  
+  API.savePost(post).then(function () {
+    window.location.assign("/");
+  });
+  
 }
 
 blogSubmit.on("click", handleFormSubmit)
 
 $("document").ready(function() {
-
+  
   $("input[type=file]").on("change", function() {
-
+    
     var $files = $(this).get(0).files;
-
+    
     if ($files.length) {
-
+      
       // Reject big files
       if ($files[0].size > $(this).data("max-size") * 1024) {
         console.log("Please select a smaller file");
         return false;
       }
-
+      
       // Begin file upload
       console.log("Uploading file to Imgur..");
-
+      
       // Replace ctrlq with your own API key
       var apiUrl = "https://api.imgur.com/3/image";
       var apiKey = 'ctrlq';
-
+      
       var settings = {
         async: false,
         crossDomain: true,
@@ -71,19 +73,33 @@ $("document").ready(function() {
         },
         mimeType: 'multipart/form-data'
       };
-
+      
       var formData = new FormData();
       formData.append("image", $files[0]);
       settings.data = formData;
-
+      
       // Response contains stringified JSON
       // Image URL available at response.data.link
       $.ajax(settings).done(function(response) {
         console.log(response);
       });
-
+      
     }
   });
 });
 
+var feedback = function(res) {
+  if (res.success === true) {
+      imageUrl = res.data.link;
+      var get_link = res.data.link.replace(/^http:\/\//i, 'https://');
+      document.querySelector('.status').classList.add('bg-success');
+      document.querySelector('.status').innerHTML =
+          'Image : ' + '<br><input class="image-url" value=\"' + get_link + '\"/>' + '<img class="img" alt="Imgur-Upload" src=\"' + get_link + '\"/>';
+  }
+};
 
+new Imgur({
+  clientid: '498f0d618b842ae', //You can change this ClientID
+  callback: feedback
+
+});
