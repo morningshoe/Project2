@@ -19,7 +19,6 @@ module.exports = function (app) {
 
   // Load example page and pass in a post by id
   app.get("/blog-post/:id", function (req, res) {
-    //get data
     db.Post.findOne({
       where: { id: req.params.id },
       include: [db.Author]
