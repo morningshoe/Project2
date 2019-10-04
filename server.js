@@ -6,7 +6,7 @@ app.use(express.json())
 require("./routes/htmlRoutes")(app)
 require("./routes/api/api-post-routes")(app)
 var PORT = process.env.PORT || 3030;
-
+var db = require("./models");
 
 app.engine("handlebars", exphbs());
 app.set("view engine", "handlebars");
@@ -15,4 +15,8 @@ app.set("view engine", "handlebars");
 
 
 app.use(express.static(path.join(__dirname, 'public')));
-app.listen(PORT, () => console.log("Server listening on port " + PORT));
+
+db.sequelize.sync()
+    .then(function(){
+        app.listen(PORT, () => console.log("Server listening on port " + PORT));
+})
