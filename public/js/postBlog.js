@@ -1,7 +1,8 @@
-$submitBtn = (".blogbut");
-$formTitle = ("#colFormLabelSm");
-$formBody = ("#blogPostBody");
-$formImage = (".image_url");
+var $blogSubmit = $(".blogbut");
+var $formTitle = $("#colFormLabelSm");
+var $formBody = $("#blogPostBody");
+var $formImage = $(".image_url");
+
 var API = {
     savePost: function (post) {
         return $.ajax({
@@ -34,7 +35,7 @@ var handleFormSubmit = function (event) {
 
 }
 
-$submitBtn.on("click", handleFormSubmit)
+$blogSubmit.on("click", handleFormSubmit)
 
 // // Get references to page elements
 // var $exampleText = $("#example-text");
@@ -136,51 +137,51 @@ $submitBtn.on("click", handleFormSubmit)
 // $submitBtn.on("click", handleFormSubmit);
 // $exampleList.on("click", ".delete", handleDeleteBtnClick);
 
-// $("document").ready(function() {
+$("document").ready(function() {
 
-//   $("input[type=file]").on("change", function() {
+  $("input[type=file]").on("change", function() {
 
-//     var $files = $(this).get(0).files;
+    var $files = $(this).get(0).files;
 
-//     if ($files.length) {
+    if ($files.length) {
 
-//       // Reject big files
-//       if ($files[0].size > $(this).data("max-size") * 1024) {
-//         console.log("Please select a smaller file");
-//         return false;
-//       }
+      // Reject big files
+      if ($files[0].size > $(this).data("max-size") * 1024) {
+        console.log("Please select a smaller file");
+        return false;
+      }
 
-//       // Begin file upload
-//       console.log("Uploading file to Imgur..");
+      // Begin file upload
+      console.log("Uploading file to Imgur..");
 
-//       // Replace ctrlq with your own API key
-//       var apiUrl = "https://api.imgur.com/3/image";
-//       var apiKey = 'ctrlq';
+      // Replace ctrlq with your own API key
+      var apiUrl = "https://api.imgur.com/3/image";
+      var apiKey = 'ctrlq';
 
-//       var settings = {
-//         async: false,
-//         crossDomain: true,
-//         processData: false,
-//         contentType: false,
-//         type: 'POST',
-//         url: apiUrl,
-//         headers: {
-//           Authorization: '498f0d618b842ae ' + apiKey,
-//           Accept: 'application/json'
-//         },
-//         mimeType: 'multipart/form-data'
-//       };
+      var settings = {
+        async: false,
+        crossDomain: true,
+        processData: false,
+        contentType: false,
+        type: 'POST',
+        url: apiUrl,
+        headers: {
+          Authorization: '498f0d618b842ae ' + apiKey,
+          Accept: 'application/json'
+        },
+        mimeType: 'multipart/form-data'
+      };
 
-//       var formData = new FormData();
-//       formData.append("image", $files[0]);
-//       settings.data = formData;
+      var formData = new FormData();
+      formData.append("image", $files[0]);
+      settings.data = formData;
 
-//       // Response contains stringified JSON
-//       // Image URL available at response.data.link
-//       $.ajax(settings).done(function(response) {
-//         console.log(response);
-//       });
+      // Response contains stringified JSON
+      // Image URL available at response.data.link
+      $.ajax(settings).done(function(response) {
+        console.log(response);
+      });
 
-//     }
-//   });
-// });
+    }
+  });
+});

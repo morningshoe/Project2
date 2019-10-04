@@ -4,6 +4,7 @@ var app = express();
 var path = require("path");
 var request = require('request');
 var bodyParser = require('body-parser');
+require("./routes/htmlRoutes")(app)
 
 var PORT = process.env.PORT || 3030;
 
@@ -75,61 +76,8 @@ function callHome (finishedHome) {
   });    
 };
 
-//Set Handlebar routes 
-app.get("/home.html", function (req, res) {
-  callHome (function(doneHome) {
-    res.render("home", {
-    home: doneHome
-  });
-  });
-});
 
-app.get("/technology.html", function (req, res) {
-    callTech (function(doneTech) {
-                res.render("technology", {
-                tech: doneTech
-            });
-            }); 
-});
-
-app.get("/business.html", function (req, res) {
-    callBus (function(doneBus) {
-        res.render("business", {
-        bus: doneBus
-    });
-    }); 
-});
-
-app.get("/sports.html", function (req, res) {
-    callSports (function(doneSports) {
-        res.render("sports", {
-        sports: doneSports
-    });
-    }); 
-});
-
-app.get("/entertainment.html", function (req, res) {
-    callEnt (function(doneEnt) {
-        res.render("entertainment", {
-        ent: doneEnt
-    });
-    }); 
-});
-
-app.get("/health.html", function (req, res){
-    callHealth (function(doneHealth) {
-        res.render("health", {
-        health: doneHealth
-    });
-    }); 
-});
-
-app.get("/blog.html", function (req, res){
-  res.render("blog", {
-  })
-});
 
 
 app.use(express.static(path.join(__dirname, 'public')));
-require("./routes/htmlRoutes")(app)
 app.listen(PORT, () => console.log("Server listening on port " + PORT));
