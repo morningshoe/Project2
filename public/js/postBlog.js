@@ -21,16 +21,16 @@ var handleFormSubmit = function (event) {
     var post = {
         title: formTitle.val().trim(),
         body: formBody.val().trim(),
-        image: formImage.val().trim()
+        // image: formImage.val().trim()
     }
 
-    if (!(post.title && post.description && post.image)) {
-        alert("You must enter an example text and description!");
+    if (!(post.title && post.description)) {
+        alert("You must enter a title and body!");
         return;
     }
 
     API.savePost(post).then(function () {
-        window.location.href("home");
+        window.location.href("/");
     });
 
 }
