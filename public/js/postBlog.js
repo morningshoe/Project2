@@ -24,7 +24,7 @@ var handleFormSubmit = function (event) {
         // image: formImage.val().trim()
     }
 
-    if (!(post.title && post.description)) {
+    if (!(post.title && post.body)) {
         alert("You must enter a title and body!");
         return;
     }
