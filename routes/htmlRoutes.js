@@ -5,9 +5,9 @@ var bodyParser = require('body-parser');
 
 module.exports = function (app) {
   //Body-parser middleware
-  app.use(bodyParser.urlencoded({extended: false}));
+  app.use(bodyParser.urlencoded({ extended: false }));
   // Load blog page
-  
+
   app.get("blog", function (req, res) {
     db.Post.findAll({})
       .then(function (results) {
@@ -21,7 +21,7 @@ module.exports = function (app) {
   app.get("/", function (req, res) {
     db.Post.findAll({
       limit: 5,
-      order: [[ 'createdAt', 'DESC' ]],
+      order: [['createdAt', 'DESC']],
     })
       .then(function (results) {
         res.render("", {
@@ -47,117 +47,127 @@ module.exports = function (app) {
 
   //Set Handlebar routes 
   app.get("/", function (req, res) {
-    callHome (function(doneHome) {
+    callHome(function (doneHome) {
       res.render("home", {
-      home: doneHome
+        home: doneHome
+      });
     });
-    });
+    db.Post.findAll({
+      limit: 5,
+      order: [['createdAt', 'DESC']],
+    })
+      .then(function (results) {
+        res.render("", {
+          blog: results
+        });
+      });
+
   });
 
   app.get("/technology", function (req, res) {
-      callTech (function(doneTech) {
-                  res.render("technology", {
-                  tech: doneTech
-              });
-              }); 
+    callTech(function (doneTech) {
+      res.render("technology", {
+        tech: doneTech
+      });
+    });
   });
-  
+
   app.get("/business", function (req, res) {
-      callBus (function(doneBus) {
-          res.render("business", {
-          bus: doneBus
+    callBus(function (doneBus) {
+      res.render("business", {
+        bus: doneBus
       });
-      }); 
+    });
   });
-  
+
   app.get("/sports", function (req, res) {
-      callSports (function(doneSports) {
-          res.render("sports", {
-          sports: doneSports
+    callSports(function (doneSports) {
+      res.render("sports", {
+        sports: doneSports
       });
-      }); 
+    });
   });
-  
+
   app.get("/entertainment", function (req, res) {
-      callEnt (function(doneEnt) {
-          res.render("entertainment", {
-          ent: doneEnt
+    callEnt(function (doneEnt) {
+      res.render("entertainment", {
+        ent: doneEnt
       });
-      }); 
+    });
   });
-  
-  app.get("/health", function (req, res){
-      callHealth (function(doneHealth) {
-          res.render("health", {
-          health: doneHealth
+
+  app.get("/health", function (req, res) {
+    callHealth(function (doneHealth) {
+      res.render("health", {
+        health: doneHealth
       });
-      }); 
+    });
   });
-  
-  app.get("/blog", function (req, res){
+
+  app.get("/blog", function (req, res) {
     res.render("blog", {
     })
   });
 };
 
 //API Keys
-function callTech (finishedTech) {
-  request("https://newsapi.org/v2/top-headlines?country=us&category=technology&apiKey=bae0f0bd96534d62b77172d660788633", { json:true }, (err, res, body) => {
-      if (err) {return console.log(err);}
-      if(res.statusCode === 200){
-          finishedTech(body.articles);
-      };
-  });    
+function callTech(finishedTech) {
+  request("https://newsapi.org/v2/top-headlines?country=us&category=technology&apiKey=bae0f0bd96534d62b77172d660788633", { json: true }, (err, res, body) => {
+    if (err) { return console.log(err); }
+    if (res.statusCode === 200) {
+      finishedTech(body.articles);
+    };
+  });
 };
 
 //Calling business API
-function callBus (finishedBus) {
-  request("https://newsapi.org/v2/top-headlines?country=us&category=business&apiKey=bae0f0bd96534d62b77172d660788633", { json:true }, (err, res, body) => {
-      if (err) {return console.log(err);}
-      if(res.statusCode === 200){
-          finishedBus(body.articles);
-      };
-  });    
+function callBus(finishedBus) {
+  request("https://newsapi.org/v2/top-headlines?country=us&category=business&apiKey=bae0f0bd96534d62b77172d660788633", { json: true }, (err, res, body) => {
+    if (err) { return console.log(err); }
+    if (res.statusCode === 200) {
+      finishedBus(body.articles);
+    };
+  });
 };
 
 //Calling Sports API
-function callSports (finishedSports) {
-  request("https://newsapi.org/v2/top-headlines?country=us&category=sports&apiKey=bae0f0bd96534d62b77172d660788633", { json:true }, (err, res, body) => {
-      if (err) {return console.log(err);}
-      if(res.statusCode === 200){
-          finishedSports(body.articles);
-      };
-  });    
+function callSports(finishedSports) {
+  request("https://newsapi.org/v2/top-headlines?country=us&category=sports&apiKey=bae0f0bd96534d62b77172d660788633", { json: true }, (err, res, body) => {
+    if (err) { return console.log(err); }
+    if (res.statusCode === 200) {
+      finishedSports(body.articles);
+    };
+  });
 };
 
 //Calling Entertainment API
-function callEnt (finishedEnt) {
-  request("https://newsapi.org/v2/top-headlines?country=us&category=entertainment&apiKey=bae0f0bd96534d62b77172d660788633", { json:true }, (err, res, body) => {
-      if (err) {return console.log(err);}
-      if(res.statusCode === 200){
-          finishedEnt(body.articles);
-      };
-  });    
+function callEnt(finishedEnt) {
+  request("https://newsapi.org/v2/top-headlines?country=us&category=entertainment&apiKey=bae0f0bd96534d62b77172d660788633", { json: true }, (err, res, body) => {
+    if (err) { return console.log(err); }
+    if (res.statusCode === 200) {
+      finishedEnt(body.articles);
+    };
+  });
 };
 
 
 //Calling Health API
-function callHealth (finishedHealth) {
-  request("https://newsapi.org/v2/top-headlines?country=us&category=health&apiKey=bae0f0bd96534d62b77172d660788633", { json:true }, (err, res, body) => {
-      if (err) {return console.log(err);}
-      if(res.statusCode === 200){
-          finishedHealth(body.articles);
-      };
-  });    
+function callHealth(finishedHealth) {
+  request("https://newsapi.org/v2/top-headlines?country=us&category=health&apiKey=bae0f0bd96534d62b77172d660788633", { json: true }, (err, res, body) => {
+    if (err) { return console.log(err); }
+    if (res.statusCode === 200) {
+      finishedHealth(body.articles);
+    };
+  });
 };
 
 //Calling API for home page
-function callHome (finishedHome) {
-request("https://newsapi.org/v2/top-headlines?country=us&apiKey=bae0f0bd96534d62b77172d660788633", { json:true }, (err, res, body) => {
-    if (err) {return console.log(err);}
-    if(res.statusCode === 200){
-        finishedHome(body.articles);
+function callHome(finishedHome) {
+  request("https://newsapi.org/v2/top-headlines?country=us&apiKey=bae0f0bd96534d62b77172d660788633", { json: true }, (err, res, body) => {
+    if (err) { return console.log(err); }
+    if (res.statusCode === 200) {
+      finishedHome(body.articles);
     };
-});    
+  });
 };
 
