@@ -7,6 +7,7 @@ module.exports = function (app) {
   //Body-parser middleware
   app.use(bodyParser.urlencoded({extended: false}));
   // Load blog page
+  
   app.get("blog", function (req, res) {
     db.Post.findAll({})
       .then(function (results) {
@@ -14,6 +15,18 @@ module.exports = function (app) {
           post: results
         }
         res.render("blog", object);
+      });
+  });
+
+  app.get("/", function (req, res) {
+    db.Post.findAll({
+      limit: 5,
+      order: [[ 'createdAt', 'DESC' ]],
+    })
+      .then(function (results) {
+        res.render("", {
+          blog: results
+        });
       });
   });
 
@@ -31,6 +44,7 @@ module.exports = function (app) {
       });
   });
 
+
   //Set Handlebar routes 
   app.get("/", function (req, res) {
     callHome (function(doneHome) {
@@ -39,7 +53,7 @@ module.exports = function (app) {
     });
     });
   });
-  
+
   app.get("/technology", function (req, res) {
       callTech (function(doneTech) {
                   res.render("technology", {
@@ -146,3 +160,4 @@ request("https://newsapi.org/v2/top-headlines?country=us&apiKey=bae0f0bd96534d62
     };
 });    
 };
+
