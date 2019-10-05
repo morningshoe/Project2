@@ -1,45 +1,69 @@
 <!DOCTYPE html>
 <html>
+
 <head>
- <link href="./css/style.css" rel="stylesheet" media="screen">
+  <link href="./css/style.css" rel="stylesheet" media="screen">
 </head>
 
 <body>
 
-
-<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-  
-  
-  <div class="carousel-inner">
-      {{#each home}}
-    <div class="carousel-item {{#unless @index}} active{{/unless}}">
-      <img src={{{urlToImage}}} class="d-block w-100" alt="...">
-    </div>
-    {{/each}}
-    </div>
-  <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="sr-only">Previous</span>
-  </a>
-  <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="sr-only">Next</span>
-  </a>
-</div>
-
-</br></br>
-
-<div class="flex">
-{{#each home}}
-  <div class="card card-width">
-    <img src= {{{urlToImage}}} alt="#" class="home-img">
-    <div class="card-body">
-      <h5 class="card-title">{{title}}</h5>
-      <p class="card-text">{{description}}</p>
-      <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-      <a href="/blog" class="btn btn-primary">Tell us your thoughts!</a>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8">
+        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+          <div class="carousel-inner">
+            {{#each home}}
+            <div class="carousel-item {{#unless @index}} active{{/unless}}">
+              <img src={{{urlToImage}}} class="d-block w-100" alt="...">
+            </div>
+            {{/each}}
+          </div>
+          <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+          </a>
+          <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+          </a>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card" style="width: 18rem;">
+          <img class="card-img-top"
+            src="https://cdn.dribbble.com/users/542139/screenshots/6388355/highlights_012519-05.png"
+            alt="Card image cap">
+          <div class="card-body">
+            <h5 class="card-title">Card title</h5>
+            <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+              content.</p>
+            <a href="#" class="card-link">Card link</a>
+            <a href="#" class="card-link">Another link</a>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
-{{/each}}
-</div>
+
+  </br></br>
+
+  <div class="flex-column">
+    {{#each home}}
+    <div class="card col-md-8">
+      <div class="row">
+        <div class="col-md-5">
+          <br>
+          <img src={{{urlToImage}}} alt="#" class="home-img">
+            <h5 class="card-title">{{title}}</h5>
+          </div>
+          <div class="card-body col-md-7">
+          <p class="card-text">{{description}}</p>
+          <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+          <a href="/blog" class="btn btn-primary">Tell us your thoughts!</a>
+        </div>
+      </div>
+    </div>
+    {{/each}}
+  </div>
 </body>

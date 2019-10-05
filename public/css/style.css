@@ -81,6 +81,10 @@ body.loading .loading-modal {
     width: 100%;
 }
 
+.carousel {
+    max-height: 350px;
+    overflow: hidden;
+}
 /*formatting for home page images */
 .flex {
     display: flex;
