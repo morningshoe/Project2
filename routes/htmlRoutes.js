@@ -57,7 +57,7 @@ module.exports = function (app) {
       order: [['createdAt', 'DESC']],
     })
       .then(function (results) {
-        res.render("", {
+        res.render("home", {
           blog: results
         });
       });
@@ -104,10 +104,10 @@ module.exports = function (app) {
     });
   });
 
-  app.get("/blog", function (req, res) {
-    res.render("blog", {
-    })
-  });
+//   app.get("/blog", function (req, res) {
+//     res.render("blog", {
+//     })
+//   });
 };
 
 //API Keys
