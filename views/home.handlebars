@@ -7,7 +7,7 @@
 
 <body>
 
-  <div class="container">
+  <div class="container col-md-12">
     <div class="row">
       <div class="col-md-7">
         <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
@@ -42,7 +42,7 @@
 
   <div class="flex-column">
     {{#each home}}
-    <div class="card col-md-8">
+    <div class="card col-md-7">
       <div class="row">
         <div class="col-md-5">
           <br>
@@ -53,7 +53,7 @@
           <p class="card-text">{{description}}</p>
           <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
           <a href="/blog" class="btn btn-primary">Tell us your thoughts!</a>
-          <a href={{url}} class="card-link">Full Article</a>
+          <a href={{url}} class="card-link">Read the article.</a>
         </div>
       </div>
     </div>
