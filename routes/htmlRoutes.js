@@ -18,18 +18,6 @@ module.exports = function (app) {
       });
   });
 
-  // app.get("/", function (req, res) {
-  //   db.Post.findAll({
-  //     limit: 5,
-  //     order: [['createdAt', 'DESC']],
-  //   })
-  //     .then(function (results) {
-  //       res.render("", {
-  //         blog: results
-  //       });
-  //     });
-  // });
-
   // Load example page and pass in a post by id
   app.get("/blog-post/:id", function (req, res) {
     db.Post.findOne({
@@ -101,10 +89,10 @@ app.get("/health", function (req, res) {
   });
 });
 
-//   app.get("/blog", function (req, res) {
-//     res.render("blog", {
-//     })
-//   });
+  app.get("/blog", function (req, res) {
+    res.render("blog", {
+    })
+  });
 };
 
 //API Keys
