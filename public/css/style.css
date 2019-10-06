@@ -99,3 +99,30 @@ body.loading .loading-modal {
 .home-img {
     width: 100%;
 }
+
+.navbar-brand {
+    font-family: 'Merriweather', serif;
+}
+
+#blog-card {
+    position: sticky;
+    top: 0;
+}
+
+.card-title {
+    font-family: 'Merriweather Sans', sans-serif;
+}
+
+.card-text {
+    font-family: 'Open Sans', sans-serif;
+}
+
+.card-subtitle {
+    font-family: 'Open Sans', sans-serif;
+}
+
+.most-recent {
+    font-family: 'Merriweather', sans-serif;
+    font-size: 25px;
+    border-bottom: solid 1px gray;
+}
