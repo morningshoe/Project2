@@ -7,6 +7,11 @@ module.exports = function (sequelize, DataTypes) {
         len: [1]
       }
     },
+    description: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      len: [1, 20]
+    },
     body: {
       type: DataTypes.TEXT,
       allowNull: false,

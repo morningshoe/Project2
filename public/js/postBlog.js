@@ -1,4 +1,5 @@
 var blogSubmit = $(".blogbut");
+var formDescription = $("#blogPostDescription")
 var formTitle = $("#colFormLabelSm");
 var formBody = $("#blogPostBody");
 var formImage = $(".image_url");
@@ -22,12 +23,13 @@ var handleFormSubmit = function (event) {
   
   var post = {
     title: formTitle.val().trim(),
+    description: formDescription.val().trim(),
     body: formBody.val().trim(),
     image: imageUrl
   }
   console.log(post);
-  if (!(post.title && post.body)) {
-    alert("You must enter a title and body!");
+  if (!(post.title || post.body || post.description || post.image)) {
+    alert("Please fill out the form completely.");
     return;
   }
   

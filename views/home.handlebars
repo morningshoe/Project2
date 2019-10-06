@@ -9,7 +9,7 @@
 
   <div class="container">
     <div class="row">
-      <div class="col-md-8">
+      <div class="col-md-7">
         <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
           <div class="carousel-inner">
             {{#each home}}
@@ -28,25 +28,17 @@
           </a>
         </div>
       </div>
-      <div class="col-md-4">
-        <div class="card" style="width: 18rem;">
-          <img class="card-img-top"
-            src="https://cdn.dribbble.com/users/542139/screenshots/6388355/highlights_012519-05.png"
-            alt="Card image cap">
-          <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-              content.</p>
-            <a href="#" class="card-link">Card link</a>
-            <a href="#" class="card-link">Another link</a>
-          </div>
+      <div class="col-md-5 position-sticky">
+        <div class="flex-column">
+          {{#each blog}}
+            {{>blogcards}}
+          {{/each}}
         </div>
       </div>
     </div>
   </div>
 
-  </br></br>
+  </br>
 
   <div class="flex-column">
     {{#each home}}
@@ -55,12 +47,13 @@
         <div class="col-md-5">
           <br>
           <img src={{{urlToImage}}} alt="#" class="home-img">
-            <h5 class="card-title">{{title}}</h5>
-          </div>
-          <div class="card-body col-md-7">
+          <h5 class="card-title">{{title}}</h5>
+        </div>
+        <div class="card-body col-md-7">
           <p class="card-text">{{description}}</p>
           <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
           <a href="/blog" class="btn btn-primary">Tell us your thoughts!</a>
+          <a href={{url}} class="card-link">Full Article</a>
         </div>
       </div>
     </div>
