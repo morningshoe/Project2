@@ -37,7 +37,7 @@ module.exports = function (app) {
   app.get("/", function (req, res) {
     callHome(function (doneHome) {
       db.Post.findAll({
-        limit: 5,
+        limit: 3,
         order: [['createdAt', 'DESC']]
       })
         .then(function (results) {
