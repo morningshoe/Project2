@@ -149,3 +149,44 @@ body.loading .loading-modal {
     height: 200px;
     overflow: hidden;
 }
+
+#blogPostTitle {
+    font-family: 'Merriweather', serif;
+    color: black;
+    font-size: 25px;
+    border-top: 0;
+    border-left: 0;
+    border-right: 0;
+    border-radius: 0;
+}
+
+#blogPostBody {
+    font-family: 'Merriweather', serif;
+    font-size: 25px;
+    border-top: 0;
+    border-left: 0;
+    border-right: 0;
+    border-radius: 0;
+}
+
+#blogPostCategory {
+    font-family: 'Merriweather', serif;
+    font-size: 25px;
+    border-top: 0;
+    border-left: 0;
+    border-right: 0;
+    border-radius: 0;
+}
+
+#blogPostDescription {
+    font-family: 'Merriweather', serif;
+    font-size: 25px;
+    border-top: 0;
+    border-left: 0;
+    border-right: 0;
+    border-radius: 0;
+}
+
+#blogPostButton {
+    font-family: 'Merriweather', serif;
+}

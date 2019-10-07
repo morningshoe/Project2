@@ -1,6 +1,6 @@
 var blogSubmit = $(".blogbut");
 var formDescription = $("#blogPostDescription")
-var formTitle = $("#colFormLabelSm");
+var formTitle = $("#blogPostTitle");
 var formBody = $("#blogPostBody");
 var formImage = $(".image_url");
 var imageUrl = null;
