@@ -29,8 +29,8 @@
         </div>
         <div class="card-body col-md-7">
           <p class="card-text">{{description}}</p>
+          <a href={{url}} class="card-link justify-content-end" id="article-link">Read the article >></a>
           <p class="card-text"><small class="text-muted">Last updated 1 min ago</small></p>
-          <a href={{url}} class="card-link" id="article-link">Read the article >></a>
         </div>
       </div>
       {{/each}}
@@ -44,14 +44,16 @@
         {{/each}}
         <div class="card" style="max-width: 540px;">
           <div class="row no-gutters">
-            <div class="col-md-8">
-              <img src="https://cdn.dribbble.com/users/59947/screenshots/7334768/media/76be5839c0d1bd32099c0b3f7f1c6eb1.jpg" class="card-img" id="sign-up-img" alt="...">
-            </div>
             <div class="col-md-4" id="sign-up-body">
               <div class="card-body">
                 <h5 class="card-title">Sign up today!</h5>
                 <p class="card-text">Find your stage. Share Ideas. Raise Your Voice. </p>
               </div>
+            </div>
+            <div class="col-md-8">
+              <img
+                src="https://cdn.dribbble.com/users/59947/screenshots/7334768/media/76be5839c0d1bd32099c0b3f7f1c6eb1.jpg"
+                class="card-img" id="sign-up-img" alt="...">
             </div>
           </div>
         </div>
