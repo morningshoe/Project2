@@ -126,3 +126,20 @@ body.loading .loading-modal {
     font-size: 25px;
     border-bottom: solid 1px gray;
 }
+
+#sign-up-body {
+    background-color: #f5f5f5;
+}
+
+#category-nav {
+    color: black;
+    font-family: 'Merriweather', serif;
+}
+
+#navbar-icons {
+    color: white;
+}
+
+#article-link {
+    color: #019B77
+}
