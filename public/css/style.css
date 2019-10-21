@@ -105,9 +105,11 @@ body.loading .loading-modal {
     font-size: 23px;
 }
 
-#blog-card {
-    position: sticky;
-    top: 0;
+@media (min-height: 880px) {
+    #blog-card {
+        position: sticky;
+        top: 76px;
+    }
 }
 
 .card-title {
